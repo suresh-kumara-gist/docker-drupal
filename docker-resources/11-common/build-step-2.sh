@@ -11,9 +11,9 @@ cd /var/www/html && \
   composer install
 rm -Rf vendor/drush
 composer install
-# ls -lah /var/www/html
-# cat /var/www/html/core/lib/Drupal.php|grep VERS
-# ln -s /var/www/html/vendor/bin/drush /bin/drush
-# drush -v
-# echo "===> (11) All done installing Drupal 11"
-# /docker-resources/tools/check-integrity.sh "Drupal 11"
+ls -lah /var/www/html
+cat /var/www/html/core/lib/Drupal.php|grep VERS
+ln -s /var/www/html/vendor/bin/drush /bin/drush
+drush -v
+echo "===> (11) All done installing Drupal 11"
+/docker-resources/tools/check-integrity.sh "Drupal 11"
