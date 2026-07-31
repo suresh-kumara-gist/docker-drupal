@@ -1,4 +1,4 @@
-name: RUN Tests
+name: Run Tests
 
 on:
   push:
@@ -7,15 +7,32 @@ on:
   pull_request:
 
 jobs:
-  test:
+  drupal10:
+    name: Drupal 10
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
-      - name: Make test script executable
-        run: chmod +x ./test.sh
+      - run: docker pull drupal:10-php8.1-fpm-alpine
 
-      - name: Run tests
-        run: ./test.sh
+      - run: docker build -f Dockerfile-10-fpm-alpine -t test-drupal-10-fpm-alpine .
+
+      - run: docker build -f Dockerfile-10-fpm-alpine-dev -t test-drupal-10-fpm-alpine-dev .
+
+      - run: ./scripts/lib/test.sh 10-fpm-alpine
+
+  drupal11:
+    name: Drupal 11
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: docker pull drupal:11-fpm-alpine
+
+      - run: docker build -f Dockerfile-11 -t test-drupal-11 .
+
+      - run: docker build -f Dockerfile-11-dev -t test-drupal-11-dev .
+
+      - run: ./scripts/lib/test.sh 11
