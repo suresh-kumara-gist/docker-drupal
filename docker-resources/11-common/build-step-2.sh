@@ -10,7 +10,7 @@ cd /var/www/html && \
   composer config --no-plugins allow-plugins.php-http/discovery true && \
   composer install
 rm -Rf vendor/drush
-composer install
+# composer install
 # ls -lah /var/www/html
 # cat /var/www/html/core/lib/Drupal.php|grep VERS
 # ln -s /var/www/html/vendor/bin/drush /bin/drush
